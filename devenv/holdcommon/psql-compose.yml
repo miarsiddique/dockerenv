@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+
+  psql:
+    image: postgres
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes: 
+      - ${PG_DATABASE_DIR}:/var/lib/postgresql/data
+    networks:
+      - psqlnet
+    restart: unless-stopped
+
+networks:
+  psqlnet:
+    driver: bridge

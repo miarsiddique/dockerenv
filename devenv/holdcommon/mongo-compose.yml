@@ -1,0 +1,14 @@
+version: "3.1"
+services:
+  mongodb:
+    image: mongo:3
+    env_file:
+      - .env
+    volumes:
+      - ${MONGO_DATABASE_DIR}:/data/db
+    networks:
+      - mongonet
+      
+networks:
+  mongonet:
+    driver: bridge

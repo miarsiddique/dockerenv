@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8181:8080
+    volumes:
+      - ./config/upload_large_dumps.ini:/usr/local/etc/php/conf.d/upload_large_dumps.ini
+    networks:
+      - common_mysqlnet
+#      - common_psqlnet
+#      - common_mongonet 
+networks:
+#  common_mongonet:
+#    external: true
+  common_mysqlnet:
+    external: true
+#  common_psqlnet:
+#    external: true

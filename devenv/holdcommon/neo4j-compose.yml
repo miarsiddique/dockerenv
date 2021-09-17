@@ -1,0 +1,19 @@
+version: "3.1"
+services:
+  
+  neo4j:
+    image: neo4j
+    restart: always
+    ports:
+      - 7474:7474
+      - 7687:7687
+    env_file:
+      - .env
+    volumes:
+      - ${NEO4J_DATABASE_DIR}:/data
+    networks:
+      - neo4jnet
+
+networks:
+  neo4jnet:
+    driver: bridge
